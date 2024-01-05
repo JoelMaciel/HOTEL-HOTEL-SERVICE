@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  mysql_hotels:
+    image: mysql:8.0-debian
+    container_name: mysql_hotels
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: hotels
+    volumes:
+      - data-mysql-hotels:/var/lib/mysql
+    restart: always
+    networks:
+      - microservices_network
+
+volumes:
+  data-mysql-hotels:
+
+networks:
+  microservices_network:
+    driver: bridge
